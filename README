@@ -1,0 +1,76 @@
+Instructions spin code
+
+     	Brief description of what it does
+
+		General spin models
+
+		Nicklocene simulations
+
+		Cotunneling
+
+	Basic notes	
+
+	-All inputs are optionals (defaults are given below in the section “description of the variables”)
+
+	-The code is called like spin_code('variable1',v1,'variable2',v2,...)
+
+	-It generates .txt and .jpg files with the spectra, spin correlations and dIdV and d2IdV2 (from cotunneling theory) of the inputed spin models
+
+	Description of the variables
+
+		-'Spins', array of spins of the model. For instance, [1, 0.5, 1.5, 1.5] means we have a 			model with one spin=1 site, one spin=0.5 site and two spin=1.5 sites. Default 			is [1, 0.5]
+
+		-'cs2', term cs2*S^2 for the hamiltonian. Default is 0.
+
+		-'cs2_system', term cs2_system*Ssystem^2 for the hamiltonian. Default is 0.
+
+		-'Jmatrix'. This is the matrix of linear couplings between the sites of the model as 			ordered in the array 'Spins'. Default is the 0 matrix.
+
+		-'Jqmatrix'. This is the matrix of quadratic couplings between the sites of the model 			as ordered in the array 'Spins'. Default is the 0 matrix.
+
+		-'Magnetic_field'  constant magentic field, given as a vector [Bx,By,Bz]. Default to 0.
+
+		-'Varying_Magnetic_field', given as a Nx3 matrix, where N is the number of points in 			J or h in Nck-type simulation.
+
+		-'Anisotropies'. Matrix Nsites x 3 with the magetic anisotropy of each site. Default is 			first row [0,0,4] (Nicklocene) and the remaining rows are all 0.
+
+		-'Plot_spectra', set to 1 if we want to plot spectra as a function of J or h in a 				Nicklocene-type simulation.
+
+		-'Number_of_states_to_plot_in_spectrum', default is the total number of states.
+
+		-'Nc_simulation', set to 1 if you want to run the Nickelocene-type simulation. The 			first site is always the Nickelocene.  
+
+		-'Simulation_without_Nc', set to 1 if you also want to calculate the system without 			the first site (the Nc).
+
+		-'Jmin', default is set to 0
+
+		-'Jmax', default is set to 2 (meV)
+
+		-'steps_J', default is set to 100
+
+		-'height', set to 1 if you want to make representations in terms of h (the J depends 			exponentially with h), in which case you will need to set the next 5 variables.
+		-'hmin'
+
+		-'hmax'
+
+		-'step_h'
+
+		-'Decay'
+
+		-'Maximal_J'
+
+		-'do_cotunneling', set to 1 if you want to run the cotunneling model
+
+		-'do_cotunneling_system_alone', set to 1 if you also want to get the dIdV and d2IdV2 			profiles of the system without the Nc.
+
+		-'Nc_couplings', vector with Nsites-1 entries. It gives the weights of the couplings of 			Nc with the sites of the model. Default is [1,0,...0].
+
+		-'Couplings', this is an array Nsites x 2. The first (resp. Second) row is the vector 			of couplings of the sites of the model to the tip. The first site (Nc) has a larger 			coupling. The second row is just used to calculate the dIdV of the system with 			the Nicklocene (the first site).  The default (and typical value) for the first row 			is [3,1,1,...,1] (and we usually don´t care about the second row, whose default 			is all 0). 
+
+		-'Vmax', In the dIdV, we scan from -Vmax to Vmax (units in meV). Default is 20.
+
+		-'steps_V', size of the grid for the voltage
+
+		-'Temperature'
+
+		-'Contrast', contrast of colors paramater for the 2D heat map of the d2IdV2. 
